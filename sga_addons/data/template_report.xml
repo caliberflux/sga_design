@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <report 
+            string="Transmittal" 
+            id="report_transmittal_template" 
+            model="project.task" 
+            report_type="qweb-pdf"
+            name="sga_addons.report_transmittal" 
+            file="sga_addons.report_transmittal"
+            print_report_name="'Trasmittal - %s' % (object.drawing_name)"
+        />
+    </data>
+</odoo>

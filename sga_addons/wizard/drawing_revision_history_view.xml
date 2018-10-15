@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="drawing_history_revision_view_form" model="ir.ui.view">
+        <field name="name">drawing.history.revision.form</field>
+        <field name="model">drawing.revision.history</field>
+        <field name="arch" type="xml">
+            <form string="Drawing History Revision">
+                <group class="oe_title">
+                    <field name="name" required="1"/>
+                    <field name="timestamp_c" readonly="1"/>
+                    <!--<field name="store_fname" invisible="1"/>
+                    <field name="current_drawing" filename="store_fname"/>-->
+                </group>
+                <group string="Revised drawing number">
+                    <field name="revised_drawing_number"/>
+                </group>
+                <group colspan="2" col="2">
+                    <div>
+                        <field name="drawing_name" class="oe_inline" nolabel="1" readonly="1"/>
+                        <field name="revision_code_id" class="oe_inline" nolabel="1" style="width:10%;" options="{'no_open': True}" required="1"/>
+                        <field name="revision_sub_code_id" class="oe_inline" nolabel="1" style="width:10%;" options="{'no_open': True}" required="1"/>
+                    </div>
+                    
+                </group>
+                        
+                <footer>
+                    <button name="revision_internal" string="Submit" type="object" class="btn btn-sm btn-primary"/>
+                    <button string="Cancel" class="btn btn-sm btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="drawing_history_revision_action" model="ir.actions.act_window">
+        <field name="name">Drawing history Internal revision</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">drawing.revision.history</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="drawing_history_revision_view_form"/>
+        <field name="target">new</field>
+    </record>
+    
+    <record id="drawing_revision_customer_view_form" model="ir.ui.view">
+        <field name="name">drawing.revision.customer.form</field>
+        <field name="model">drawing.revision.customer</field>
+        <field name="arch" type="xml">
+            <form string="Drawing Revision Customer">
+                <group class="oe_title">
+                    <field name="name" required="1"/>
+                    <field name="timestamp_c" readonly="1"/>
+                    <!--<field name="store_fname" invisible="1"/>
+                    <field name="current_drawing" filename="store_fname"/>
+                    -->
+                </group>
+                <group string="Revised drawing number">
+                    <field name="revised_drawing_number"/>
+                </group>
+                <group colspan="2" col="2">
+                    <div>
+                        <field name="drawing_name" class="oe_inline" nolabel="1" readonly="1"/>
+                        <field name="revision_code_id" class="oe_inline" nolabel="1" style="width:10%;" options="{'no_open': True}" required="1"/>
+                    </div>
+                    
+                </group>
+                        
+                <footer>
+                    <button name="revision_customer" string="Submit" type="object" class="btn btn-sm btn-primary"/>
+                    <button string="Cancel" class="btn btn-sm btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="drawing_revision_customer_action" model="ir.actions.act_window">
+        <field name="name">Drawing history Customer revision</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">drawing.revision.customer</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="drawing_revision_customer_view_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

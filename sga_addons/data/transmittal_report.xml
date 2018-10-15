@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="report_transmittal_document">
+    <t t-call="web.external_layout">
+        <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+        <div class="page">
+            
+            <style>
+                .col-container {
+                    display: table;
+                    width: 100%;
+                }
+                .col {
+                    display: table-cell;
+                    padding: 16px;
+                }
+            </style>
+            
+            
+            <div class="oe_structure"/>
+            <div class="row" style="text-align:center;">
+                <h1>TRANSMITTAL</h1>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-6">
+                    <img src='sga_addons/static/src/img/parrot-security-linux-debian-img.jpg' style="max-height: 70px; max-width: 70px;"/>
+                    <br/>
+                </div>
+                <div class="col-xs-6" style="float:right;">
+                    <b>TRANSMITTAL ID:</b>  <br/>
+                    <b>Date:</b>            <span t-field="o.transmital_date"/><br/>
+                    <b>Issued at:</b>       <span t-field="o.issued_place"/><br/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <span t-field="o.project_id.name"/>-<span t-field="o.project_id.project_code"/>
+                </div>
+            </div>
+            <div class="container-fluid" style="border:1px solid black;">
+                <div class="row">
+                    <div class="col-xs-6">
+                        To,<br/>
+                        <span t-field="o.project_id.partner_id.title"/> <span t-field="o.project_id.partner_id.name"/><br/>
+                        <span t-field="o.project_id.partner_id.function"/>,<br/>
+                        <span t-if="o.project_id.partner_id.parent_id">
+                          <span t-field="o.project_id.partner_id.parent_id.name"/><br/>
+                        </span>
+                        <span t-field="o.project_id.partner_id.street"/>,<span t-field="o.project_id.partner_id.street2"/>,<span t-field="o.project_id.partner_id.city"/><br/>
+                        <span t-field="o.project_id.partner_id.state_id.name"/>-<span t-field="o.project_id.partner_id.zip"/><br/>
+                        <span t-field="o.project_id.partner_id.country_id.name"/><br/>
+                        <span t-field="o.project_id.partner_id.email"/><br/>
+                        <span t-field="o.project_id.partner_id.phone"/>
+                    </div>
+                    <div class="col-xs-6">
+                      <p style="color:darkgray;font-size:15px;">VIA: <span t-field="o.mode_of_transmission.name"/></p>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <p><b>Subject:</b> <span t-field="o.subject"/></p>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p>
+                            <b>Purpose:</b><span t-field="o.project_id.state"/>: For construction  
+                            <t t-foreach="o.purpose_ids" t-as="l">
+                                <span t-field="l.name"/>,
+                            </t>
+                        </p>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <p>Dear Sir/Madam,</p>
+                        <p>Please find attached the following drawings</p>
+                        
+                    </div>
+                </div>
+                <br/>
+                <div class="container">            
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Building</th>
+                          <th>Drawing title</th>
+                          <th>Drawing no.</th>
+                          <th>Size</th>
+                          <th>Scale</th>
+                          <th>No of sheets</th>
+                          <th>No of prints/copies</th>
+                          <th>Total Prints</th>
+                          <th>Softcopy(PDF)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><span t-field="o.building_type_id.name"/></td>
+                          <td><span t-field="o.name"/></td>
+                          <td><span t-field="o.drawing_name"/></td>
+                          <td><span t-field="o.transmital_draw_size"/></td>
+                          <td><span t-field="o.transmital_draw_scale"/></td>
+                          <td><span t-field="o.transmital_draw_no_sheet"/></td>
+                          <td><span t-field="o.transmital_draw_no_print"/></td>
+                          <td><span t-field="o.transmital_draw_total_prints"/></td>
+                          <td><span t-field="o.transmital_draw_soft_copy"/></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <p><b>Total Hardcopies:</b><span t-field="o.total_hard_copy"/></p>
+                        <p><b>Total Softcopies (In Pdf):</b><span t-field="o.total_soft_copy"/></p>
+                    </div>
+                </div>
+                <br/>
+                
+                
+            </div>
+            <div class="col-container">
+                <div class="col" style="border:1px solid black;">
+                    FROM:<br/>
+                    <span t-field="o.project_id.user_id.name"/><br/>
+                    SGA<br/>
+                    MOBILE NO :<span t-field="o.project_id.user_id.partner_id.mobile"/><br/>
+                    EMAIL ID  :<span t-field="o.project_id.user_id.partner_id.email"/><br/>
+                    
+                </div>
+                <div class="col" style="border:1px solid black;">
+                    <div style="float:left;">
+                        COPIES TO<br/>
+                        CLIENT :
+                    </div>
+                    <div style="float:right;">
+                        CLIENT/CONSULTANT
+                        
+                    </div>
+                </div>
+                <div class="col" style="border:1px solid black;">
+                    CHECKED BY<br/>
+                    
+                    TRANSMITTAL MADE BY<br/>
+                    
+                    
+                </div>
+            </div>
+        </div>
+        
+    </t>
+</template>
+
+<template id="report_transmittal">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="sga_addons.report_transmittal_document" t-lang="o.partner_id.lang"/>
+        </t>
+    </t>
+</template>
+</odoo>
+    

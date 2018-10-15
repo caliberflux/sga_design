@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="project_task_timer_inherit_view" model="ir.ui.view">
+            <field name="name">project task timer</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                
+                <xpath expr="//form/header" position="inside">
+                    
+                    <button name="%(sga_addons.drawing_history_revision_action)d" string="Internal Revise"
+                                type="action" class="oe_highlight"
+                                context="{'default_task_id': active_id,
+                                            'default_drawing_name':drawing_name,
+                                            
+                                            }" invisible="1"/>
+                    <button name="%(sga_addons.drawing_revision_customer_action)d" string="Revision by client"
+                                type="action" class="oe_highlight"
+                                context="{'default_task_id': active_id,
+                                            'default_drawing_name':drawing_name,
+                                            
+                                            }" invisible="1"/>
+                    <button name="print_transmittal" type="object" string="Print Transmittal"/>
+                </xpath>
+                <div name="button_box" position="inside">
+                    <button name="toggle_start" type="object"
+                            class="oe_stat_button" icon="fa-clock-o">
+                        <field name="task_timer" widget="boolean_button"
+                            options='{"terminology": {
+                                    "string_true": "Started",
+                                    "hover_true": "Pause",
+                                    "string_false": "Timer",
+                                    "hover_false": "Start"
+                                }}'/>
+                    </button>
+                </div>
+                <xpath expr="//sheet/div[2]" position="after">
+                    <group>
+                        <group>
+                            <field name="project_code"/>
+                            <field name="building_type_id"/>
+                            <field name="building_code"/>
+                            <field name="stage_project"/>
+                            <field name="drawing_type_id"/>
+                            <field name="drawing_number"/>
+                            <field name="drawing_name"/>
+                        </group>
+                        <group string="Drawing Attachment">
+                            <field name="store_fname" invisible="1"/>
+                            <field name="current_drawing" filename="store_fname"/>
+                            <field name="milestone_id"/>
+                        </group>
+                        <group>
+                            <button name="%(sga_addons.drawing_approval_action)d" string="Approve"
+                            type="action" class="oe_highlight"
+                            context="{'default_task_id': active_id
+                                            }"/>
+                        </group>
+                        <group>
+                            <field name="approval_check_first" invisible="1"/>
+                            <field name="approval_check_second" invisible="1"/>
+                            <field name="approval_check_third" invisible="1"/>
+                        </group>
+                    </group>
+                    <group string="Drawing revision">
+                        <group>
+                            
+                                
+                                <field name="revised_drawing_no"/>
+                                
+                                <field name="revision_code_id"/>
+                                
+                                <field name="revision_sub_code_id"/>
+                                <field name="rev_reason"/>
+                                <button name="func_revision" string="Submit" type="object" class="btn btn-sm btn-primary "/>
+                            
+                            
+                        </group>
+                    </group>
+                    
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Internal Revision History">
+                        <field name="internal_rev_hist_ids" readonly="True">
+                            <tree>
+                                <field name="reason"/>
+                                <field name="timestamp_c"/>
+                                <field name="revised_drawing_number"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Customer Revision History">
+                        <field name="customer_rev_hist_ids" readonly="True">
+                            <tree>
+                                <field name="reason"/>
+                                <field name="timestamp_c"/>
+                                <field name="revised_drawing_number"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Approval History">
+                        <field name="approval_history_ids" readonly="True">
+                            <tree colors="red:approval_status=='reject';green:approval_status=='approve'">
+                                <field name="reject_reason"/>
+                                <field name="timestamp_a"/>
+                                <field name="approval_status"/>
+                                <field name="user_id"/>
+                                <field name="approval_check" invisible="1"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Transmital informamtion">
+                        <group>
+                            <group>
+                                <field name="transmital_draw_size"/>
+                                <field name="transmital_draw_scale"/>
+                                <field name="transmital_draw_no_sheet"/>
+                                <field name="mode_of_transmission"/>
+                            </group>
+                            <group>
+                                <field name="transmital_draw_no_print"/>
+                                <field name="transmital_draw_total_prints"/>
+                                <field name="transmital_draw_soft_copy"/>
+                                <field name="total_hard_copy"/>
+                                <field name="total_soft_copy"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="subject"/>
+                                <field name="purpose_ids" widget="many2many_tags"/>
+                                <field name="transmital_date"/>
+                                <field name="issued_place"/>
+                            </group>
+                        </group>
+                        
+                        
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="project_task_timer_inherit_view" model="ir.ui.view">
+            <field name="name">project task timer</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                
+                <xpath expr="//form/header" position="inside">
+                    
+                    <button name="%(sga_addons.drawing_history_revision_action)d" string="Internal Revise"
+                                type="action" class="oe_highlight"
+                                context="{'default_task_id': active_id,
+                                            'default_drawing_name':drawing_name,
+                                            
+                                            }" invisible="1"/>
+                    <button name="%(sga_addons.drawing_revision_customer_action)d" string="Revision by client"
+                                type="action" class="oe_highlight"
+                                context="{'default_task_id': active_id,
+                                            'default_drawing_name':drawing_name,
+                                            
+                                            }" invisible="1"/>
+                    <button name="print_transmittal" type="object" string="Print Transmittal"/>
+                </xpath>
+                <div name="button_box" position="inside">
+                    <button name="toggle_start" type="object"
+                            class="oe_stat_button" icon="fa-clock-o">
+                        <field name="task_timer" widget="boolean_button"
+                            options='{"terminology": {
+                                    "string_true": "Started",
+                                    "hover_true": "Pause",
+                                    "string_false": "Timer",
+                                    "hover_false": "Start"
+                                }}'/>
+                    </button>
+                </div>
+                <xpath expr="//sheet/div[2]" position="after">
+                    <group>
+                        <group>
+                            <field name="project_code"/>
+                            <field name="building_type_id"/>
+                            <field name="building_code"/>
+                            <field name="stage_project"/>
+                            <field name="drawing_type_id"/>
+                            <field name="drawing_number"/>
+                            <field name="drawing_name"/>
+                        </group>
+                        <group string="Drawing Attachment">
+                            <field name="store_fname" invisible="1"/>
+                            <field name="current_drawing" filename="store_fname"/>
+                            <field name="milestone_id"/>
+                        </group>
+                        <group>
+                            <button name="%(sga_addons.drawing_approval_action)d" string="Approve"
+                            type="action" class="oe_highlight"
+                            context="{'default_task_id': active_id
+                                            }"/>
+                        </group>
+                        <group>
+                            <field name="approval_check_first" invisible="1"/>
+                            <field name="approval_check_second" invisible="1"/>
+                            <field name="approval_check_third" invisible="1"/>
+                        </group>
+                    </group>
+                    <group string="Drawing revision">
+                        <group>
+                            
+                                
+                                <field name="revised_drawing_no"/>
+                                
+                                <field name="revision_code_id"/>
+                                
+                                <field name="revision_sub_code_id"/>
+                                <field name="rev_reason"/>
+                                <button name="func_revision" string="Submit" type="object" class="btn btn-sm btn-primary "/>
+                            
+                            
+                        </group>
+                    </group>
+                    
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Internal Revision History">
+                        <field name="internal_rev_hist_ids" readonly="True">
+                            <tree>
+                                <field name="reason"/>
+                                <field name="timestamp_c"/>
+                                <field name="revised_drawing_number"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Customer Revision History">
+                        <field name="customer_rev_hist_ids" readonly="True">
+                            <tree>
+                                <field name="reason"/>
+                                <field name="timestamp_c"/>
+                                <field name="revised_drawing_number"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Approval History">
+                        <field name="approval_history_ids" readonly="True">
+                            <tree colors="red:approval_status=='reject';green:approval_status=='approve'">
+                                <field name="reject_reason"/>
+                                <field name="timestamp_a"/>
+                                <field name="approval_status"/>
+                                <field name="user_id"/>
+                                <field name="approval_check" invisible="1"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Transmital informamtion">
+                        <group>
+                            <group>
+                                <field name="transmital_draw_size"/>
+                                <field name="transmital_draw_scale"/>
+                                <field name="transmital_draw_no_sheet"/>
+                                <field name="mode_of_transmission"/>
+                            </group>
+                            <group>
+                                <field name="transmital_draw_no_print"/>
+                                <field name="transmital_draw_total_prints"/>
+                                <field name="transmital_draw_soft_copy"/>
+                                <field name="total_hard_copy"/>
+                                <field name="total_soft_copy"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="subject"/>
+                                <field name="purpose_ids" widget="many2many_tags"/>
+                                <field name="transmital_date"/>
+                                <field name="issued_place"/>
+                            </group>
+                        </group>
+                        
+                        
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="project_task_timer_inherit_view1" model="ir.ui.view">
+            <field name="name">project task timer1</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="hr_timesheet.view_task_form2_inherited"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='timesheet_ids']/tree/field[@name='unit_amount']" position="before">
+                    <field name="date_start" required="1"/>
+                    <field name="date_end"/>
+                    <field name="timer_duration" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='progress']" position="after">
+                    <field name="is_user_working" invisible="1"/>
+                    <label for="duration"/>
+                    <div>
+                        <button style="pointer-events: none;" class="oe_inline label label-default">
+                            <field name="duration" widget="time_counter"/>
+                        </button>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="action_view_task_approval_s" model="ir.actions.act_window">
+            <field name="name">Approvals</field>
+            <field name="res_model">project.task</field>
+            <!--<field name="view_mode">kanban,tree,form,calendar,pivot,graph</field>-->
+            <field name="domain">['|','|',('first_approvee', '=', uid),
+                                        ('second_approvee', '=', uid),
+                                        ('third_approvee', '=', uid)]</field>
+        </record>
+        <menuitem id="task_approval_menu"
+            parent="project.menu_project_management"
+            action="action_view_task_approval_s"
+            sequence="6"/>
+        
+        
+    </data>
+</odoo>

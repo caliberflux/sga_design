@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sga_department,sga.department,sga_addons.model_department,base.group_user,1,1,1,1
+access_sga_building_type,sga.building.type,sga_addons.model_building_type,base.group_user,1,1,1,1
+access_sga_purpose,sga.purpose,sga_addons.model_purpose,base.group_user,1,1,1,1
+access_sga_approval_history,sga.approval.history,sga_addons.model_approval_history,base.group_user,1,1,1,1
+access_sga_revision_internal_history,sga.internal.revision.history,sga_addons.model_internal_revision_history,base.group_user,1,1,1,1
+access_sga_customer_revision_history,sga.customer.revision.history,sga_addons.model_customer_revision_history,base.group_user,1,1,1,1

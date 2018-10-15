@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="building_type_form_view" model="ir.ui.view">
+        <field name="name">building.type.form.view</field>
+        <field name="model">building.type</field>
+        <field name="arch" type="xml">
+            <form string="Building Type">
+                <sheet string="Building Type">
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <!--<field name="building_code"/>-->
+                        </group>
+                    </group>       
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="building_type_tree_view" model="ir.ui.view">
+        <field name="name">building.type.tree.view</field>
+        <field name="model">building.type</field>
+        <field name="arch" type="xml">
+            <tree string="building Type">
+                <field name="name"/>
+                <!--<field name="building_code"/>-->
+            </tree>
+        </field>
+    </record>
+    
+    <record id="building_type_action" model="ir.actions.act_window">
+        <field name="name">Building Type Action</field>
+        <field name="res_model">building.type</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <menuitem name="Building Type"
+            id="menu_department"
+            parent="project.menu_project_config"
+            action="building_type_action"
+            sequence="20"/>
+</odoo>

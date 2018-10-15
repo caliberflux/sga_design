@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="department_form_view" model="ir.ui.view">
+        <field name="name">department.form.view</field>
+        <field name="model">department</field>
+        <field name="arch" type="xml">
+            <form string="Department">
+                <sheet string="Department">
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </group>       
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="department_tree_view" model="ir.ui.view">
+        <field name="name">department.tree.view</field>
+        <field name="model">department</field>
+        <field name="arch" type="xml">
+            <tree string="Department">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="department_action" model="ir.actions.act_window">
+        <field name="name">Department</field>
+        <field name="res_model">department</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <menuitem name="Department"
+            id="menu_department"
+            parent="project.menu_project_config"
+            action="department_action"
+            sequence="30"/>
+</odoo>

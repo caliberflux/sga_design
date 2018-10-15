@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_inherit" model="ir.ui.view">
+        <field name="name">res partner view inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/notebook" position="inside">
+                <page name="amc" string="AMC">
+                    <group>
+                        <group>
+                            <field name="service_years"/>
+                            <field name="service_done"/>
+                        </group>
+                        <group>
+                            <field name="service_pending"/>
+                            <field name="next_renewal_date"/>
+                        </group>
+                    </group>
+                </page>
+                
+            </xpath>
+        </field>
+    </record>
+</odoo>

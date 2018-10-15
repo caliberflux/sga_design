@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+    <record id="email_template_transmittal" model="mail.template">
+        <field name="name">Transmittal - Send by Email</field>
+        <field name="email_from">${(object.user_id.email and '%s &lt;%s&gt;' % (object.user_id.name, object.user_id.email) or '')|safe}</field>
+        <field name="subject">Proposed building plan for floors</field>
+        <field name="partner_to">${object.partner_id.id}</field>
+        <field name="model_id" ref="sga_addons.model_project_task"/>
+        <field name="auto_delete" eval="True"/>
+        <!--<field name="report_template" ref="action_report_saleorder"/>-->
+        <!--<field name="report_name">${(object.name or '').replace('/','_')}${object.state == 'draft' and '_draft' or ''}</field>-->
+        <field name="lang">${object.partner_id.lang}</field>
+        <field name="body_html"><![CDATA[
+                                <p>Purpose ${object.project_id.state}: Construction </p>
+                                <p>Dear ${object.partner_id.name},
+                                </p>
+                                Please find attached the following drawing
+                                <p><br/></p>
+                                <table cellspacing="0" cellpadding="0" width="100%" style="font-family: 'Helvetica'; background-color: #EEE; border-collapse: collapse;border: 2px solid black;">
+                                    <tr>
+                                        <td valign="top" align="center">
+                                            <b>Building     </b>
+                                        </td>
+                                        <td valign="top" align="center">
+                                            <b>Drawing title        </b>
+                                        </td>
+                                        <td valign="top" align="center">
+                                            <b>Drawing no       </b>
+                                        </td>
+                                        <td valign="top" align="center">
+                                            <b>Size     </b>
+                                        </td>
+                                        <td valign="top" align="center">
+                                            <b>Scale        </b>
+                                        </td>
+                                        <td valign="top" align="center">
+                                            <b>No of sheets     </b>
+                                        </td>
+                                        <td valign="top" align="center">
+                                            <b>No of prints/copies      </b>
+                                        </td>
+                                        <td valign="top" align="center">
+                                            <b>Total prints     </b>
+                                        </td>
+                                        <td valign="top" align="center">
+                                            <b>Soft copies(PDF)     </b>
+                                        </td>
+        
+                                    </tr>
+                                    <tr>
+                                        <td valign="top" align="center">
+                                            
+                                        </td>
+                                        <td valign="top" align="center">
+                                            
+                                        </td>
+                                        <td valign="top" align="center">
+                                            
+                                        </td>
+                                        <td valign="top" align="center">
+                                            
+                                        </td>
+                                        <td valign="top" align="center">
+                                            
+                                        </td>
+                                        <td valign="top" align="center">
+                                            
+                                        </td>
+                                        <td valign="top" align="center">
+                                            
+                                        </td>
+                                        <td valign="top" align="center">
+                                            
+                                        </td>
+                                        
+        
+                                    </tr>
+                                    <tr>
+                                        <td valign="top" align="center">
+                                            ${object.building_type_id.name}
+                                        </td>
+                                        <td valign="top" align="center">
+                                            ${object.name}
+                                        </td>
+                                        <td valign="top" align="center">
+                                            ${object.drawing_name}
+                                        </td>
+                                        <td valign="top" align="center">
+                                            ${object.transmital_draw_size}
+                                        </td>
+                                        <td valign="top" align="center">
+                                            ${object.transmital_draw_scale}
+                                        </td>
+                                        <td valign="top" align="center">
+                                            ${object.transmital_draw_no_sheet}
+                                        </td>
+                                        <td valign="top" align="center">
+                                            ${object.transmital_draw_no_print}
+                                        </td>
+                                        <td valign="top" align="center">
+                                            ${object.transmital_draw_total_prints}
+                                        </td>
+                                        <td valign="top" align="center">
+                                            ${object.transmital_draw_soft_copy}
+                                        </td>
+        
+                                    </tr>
+                                </table>
+                                <br/>
+                                <b>Total hardcopies :</b>${object.total_hard_copy}<br/>
+                                <b>Total softcopies :</b>${object.total_soft_copy}<br/>
+                                <br/>
+                                <p>Thank you,</p>
+
+                                <p style="color:#888888;">
+                                % if object.user_id and object.user_id.signature:
+                                    ${object.user_id.signature | safe}
+                                % endif
+                                </p>
+        
+                                ]]></field>
+    </record>
+    </data>
+</odoo>

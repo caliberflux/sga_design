@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="group_sga_readonly" model="res.groups">
+        <field name="name">Interns and others</field>
+    </record>
+    
+    <record id="group_sga_no_create" model="res.groups">
+        <field name="name">Modify (cannot create)</field>
+    </record>
+    
+</odoo>
